@@ -1,0 +1,3 @@
+[submodule "resources/rockx"]
+	path = resources/rockx
+	url = https://github.com/RockX-SG/rockx-dkg-cli.git
