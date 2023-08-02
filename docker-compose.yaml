@@ -1,7 +1,6 @@
 version: "3.7"
 services: 
   ssv:
-    container_name: ssv
     image: bloxstaking/ssv-node:latest
     restart: unless-stopped
     network_mode: host
@@ -9,13 +8,12 @@ services:
       - ./config.yaml:/config.yaml
       - ./:/data
     ports:
-      - 13002:13002
-      - 12002:12002/udp
+      - 13003:13003
+      - 12003:12003/udp
     environment:
       - CONFIG_PATH=./config.yaml
     command: make BUILD_PATH=/go/bin/ssvnode start-node
   rockx:
-    container_name: rockx
     build:
       context: ./resources/rockx
       dockerfile: build/docker/node/Dockerfile
@@ -23,6 +21,6 @@ services:
     env_file: .env
     restart: on-failure
     ports: 
-      - 2505:2505
+      - 2506:2506
     volumes:
       - ./keys:/keys
