@@ -8,8 +8,8 @@ services:
       - ./config.yaml:/config.yaml
       - ./:/data
     ports:
-      - 13002:13002
-      - 12002:12002/udp
+      - 13005:13005
+      - 12005:12005/udp
     environment:
       - CONFIG_PATH=./config.yaml
     command: make BUILD_PATH=/go/bin/ssvnode start-node
@@ -21,6 +21,6 @@ services:
     env_file: .env
     restart: on-failure
     ports: 
-      - 2505:2505
+      - 2508:2508
     volumes:
       - ./keys:/keys
