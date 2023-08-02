@@ -5,7 +5,7 @@ services:
       context: ../resources/rockx
       dockerfile: build/docker/messenger/Dockerfile
     command: ./messenger
-    env_file: env/messenger.env
+    env_file: .env
     restart: on-failure
     ports: 
       - 3500:3500
