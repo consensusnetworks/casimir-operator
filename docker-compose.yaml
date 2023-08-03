@@ -1,7 +1,7 @@
 version: '3.7'
 
-x-base:
-  &default-base
+x-base-ssv-node:
+  &default-ssv-node
   build:
     context: ./resources/ssv
     dockerfile: Dockerfile
@@ -13,11 +13,11 @@ x-base:
     - ./data:/data
     - ./config:/config
 
-x-base-dkg:
-  &default-dkg
+x-base-dkg-node:
+  &default-dkg-node
   build:
     context: ./resources/dkg
-    dockerfile: Dockerfile
+    dockerfile: build/docker/node/Dockerfile
   image: dkgnode:latest
   command: ./node
   network_mode: host
@@ -26,8 +26,8 @@ x-base-dkg:
     - ./keys:/keys
 
 services:
-  dkg_messenger:
-    container_name: dkg_messenger
+  dkg-messenger:
+    container_name: dkg-messenger
     build:
       context: ./resources/dkg
       dockerfile: build/docker/messenger/Dockerfile
@@ -40,7 +40,7 @@ services:
       - 3500:3500
 
   ssv-node-1:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-1
     environment:
       CONFIG_PATH: ./config/ssv.node.1.yaml
@@ -49,14 +49,14 @@ services:
       - 17001:15001
 
   dkg-node-1:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-1
     env_file: ./env/dkg.node.1.env
     ports:
       - 2501:2501
 
   ssv-node-2:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-2
     environment:
       CONFIG_PATH: ./config/ssv.node.2.yaml
@@ -65,14 +65,14 @@ services:
       - 17002:15002
 
   dkg-node-2:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-2
     env_file: ./env/dkg.node.2.env
     ports:
       - 2502:2502
 
   ssv-node-3:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-3
     environment:
       CONFIG_PATH: ./config/ssv.node.3.yaml
@@ -81,14 +81,14 @@ services:
       - 17003:15003
 
   dkg-node-3:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-3
     env_file: ./env/dkg.node.3.env
     ports:
       - 2503:2503
 
   ssv-node-4:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-4
     environment:
       CONFIG_PATH: ./config/ssv.node.4.yaml
@@ -97,14 +97,14 @@ services:
       - 17004:15004
 
   dkg-node-4:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-4
     env_file: ./env/dkg.node.4.env
     ports:
       - 2504:2504
 
   ssv-node-5:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-5
     environment:
       CONFIG_PATH: ./config/ssv.node.5.yaml
@@ -113,14 +113,14 @@ services:
       - 17005:15005
 
   dkg-node-5:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-5
     env_file: ./env/dkg.node.5.env
     ports:
       - 2505:2505
 
   ssv-node-6:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-6
     environment:
       CONFIG_PATH: ./config/ssv.node.6.yaml
@@ -129,14 +129,14 @@ services:
       - 17006:15006
 
   dkg-node-6:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-6
     env_file: ./env/dkg.node.6.env
     ports:
       - 2506:2506
 
   ssv-node-7:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-7
     environment:
       CONFIG_PATH: ./config/ssv.node.7.yaml
@@ -145,14 +145,14 @@ services:
       - 17007:15007
 
   dkg-node-7:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-7
     env_file: ./env/dkg.node.7.env
     ports:
       - 2507:2507
 
   ssv-node-8:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-node-8
     environment:
       CONFIG_PATH: ./config/ssv.node.8.yaml
@@ -161,14 +161,14 @@ services:
       - 17008:15008
 
   dkg-node-8:
-    <<: *default-dkg
+    <<: *default-dkg-node
     container_name: dkg-node-8
     env_file: ./env/dkg.node.8.env
     ports:
       - 2508:2508
 
   ssv-exporter:
-    <<: *default-base
+    <<: *default-ssv-node
     container_name: ssv-exporter
     environment:
       CONFIG_PATH: ./config/ssv.exporter.yaml

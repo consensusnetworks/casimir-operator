@@ -16,60 +16,28 @@ generate_keystore:
 	mkdir -p keys && clef newaccount --keystore keys
 
 run_all:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d; \
-	else \
-		docker compose up -d; \
-	fi
+	docker compose up -d;
 
 run_node:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-node-1 dkg-node-1; \
-	else \
-		docker compose up -d --build ssv-node-1 dkg-node-1; \
-	fi
+	docker compose up -d --build ssv-node-1 dkg-node-1;
 
 run_exporter:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-exporter; \
-	else \
-		docker compose up -d --build ssv-exporter; \
-	fi
+	docker compose up -d --build ssv-exporter;
 
 run_messenger:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build dkg-messenger; \
-	else \
-		docker compose up -d --build dkg-messenger; \
-	fi
+	docker compose up -d --build dkg-messenger;
 
 stop_all:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down; \
-	else \
-		docker compose down; \
-	fi
+	docker compose down;
 
 stop_node:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down ssv-node-1 dkg-node-1; \
-	else \
-		docker compose down ssv-node-1 dkg-node-1; \
-	fi
+	docker compose down ssv-node-1 dkg-node-1;
 
 stop_exporter:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down ssv-exporter; \
-	else \
-		docker compose down ssv-exporter; \
-	fi
+	docker compose down ssv-exporter;
 
 stop_messenger:
-	if [ "$$(uname)" = "Linux" ]; then \
-		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down dkg-messenger; \
-	else \
-		docker compose down dkg-messenger; \
-	fi
+	docker compose down dkg-messenger;
 
 
 
