@@ -30,7 +30,7 @@ services:
     build:
       context: ./resources/dkg
       dockerfile: build/docker/messenger/Dockerfile
-    image: messenger:latest
+    image: dkgmessenger:latest
     command: ./messenger
     network_mode: host
     env_file: ./env/dkg.messenger.env

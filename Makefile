@@ -2,10 +2,10 @@ pull_submodules:
 	git submodule update --init --recursive
 
 copy_example_files:
-	@for file in ./env/example.*.env; do \
+	for file in ./env/example.*.env; do \
 		cp $$file ./env/`basename $$file | sed 's/example.//g'`; \
 	done
-	@for file in ./config/example.*.yaml; do \
+	for file in ./config/example.*.yaml; do \
 		cp $$file ./config/`basename $$file | sed 's/example.//g'`; \
 	done
 
