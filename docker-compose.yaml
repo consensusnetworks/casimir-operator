@@ -1,26 +1,183 @@
-version: "3.7"
-services: 
-  ssv:
-    image: bloxstaking/ssv-node:latest
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - ./config.yaml:/config.yaml
-      - ./:/data
-    ports:
-      - 13005:13005
-      - 12005:12005/udp
-    environment:
-      - CONFIG_PATH=./config.yaml
-    command: make BUILD_PATH=/go/bin/ssvnode start-node
-  rockx:
+version: '3.5'
+
+x-base:
+  &default-base
+  build:
+    context: ./resources/ssv
+    dockerfile: Dockerfile
+  image: ssvnode:latest
+  command: make BUILD_PATH=/go/bin/ssvnode start-node
+  network_mode: host
+  extra_hosts:
+    - host.docker.internal:host-gateway
+  restart: on-failure
+  volumes:
+    - ./data:/data
+    - ./config:/config
+
+x-base-dkg:
+  &default-dkg
+  build:
+    context: ./resources/rockx
+    dockerfile: Dockerfile
+  image: dkgnode:latest
+  command: ./node
+  network_mode: host
+  extra_hosts:
+    - host.docker.internal:host-gateway
+  restart: on-failure
+  volumes:
+    - ./keys:/keys
+
+services:
+  messenger:
     build:
       context: ./resources/rockx
-      dockerfile: build/docker/node/Dockerfile
-    command: ./node
-    env_file: .env
+      dockerfile: build/docker/messenger/Dockerfile
+    image: messenger:latest
+    command: ./messenger
+    network_mode: host
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    env_file: ./env/dkg.messenger.env
     restart: on-failure
     ports: 
+      - 3500:3500
+
+  ssv-node-1:
+    <<: *default-base
+    container_name: ssv-node-1
+    environment:
+      CONFIG_PATH: ./config/ssv.node.1.yaml
+    ports:
+      - 16001:16001
+      - 17001:15001
+
+  dkg-node-1:
+    <<: *default-dkg
+    container_name: dkg-node-1
+    env_file: ./env/dkg-node-1.env
+    ports:
+      - 2501:2501
+
+  ssv-node-2:
+    <<: *default-base
+    container_name: ssv-node-2
+    environment:
+      CONFIG_PATH: ./config/ssv.node.2.yaml
+    ports:
+      - 16002:16002
+      - 17002:15002
+
+  dkg-node-2:
+    <<: *default-dkg
+    container_name: dkg-node-2
+    env_file: ./env/dkg.node.2.env
+    ports:
+      - 2502:2502
+
+  ssv-node-3:
+    <<: *default-base
+    container_name: ssv-node-3
+    environment:
+      CONFIG_PATH: ./config/ssv.node.3.yaml
+    ports:
+      - 16003:16003
+      - 17003:15003
+
+  dkg-node-3:
+    <<: *default-dkg
+    container_name: dkg-node-3
+    env_file: ./env/dkg.node.3.env
+    ports:
+      - 2503:2503
+
+  ssv-node-4:
+    <<: *default-base
+    container_name: ssv-node-4
+    environment:
+      CONFIG_PATH: ./config/ssv.node.4.yaml
+    ports:
+      - 16004:16004
+      - 17004:15004
+
+  dkg-node-4:
+    <<: *default-dkg
+    container_name: dkg-node-4
+    env_file: env/dkg.node.4.env
+    ports:
+      - 2504:2504
+
+  ssv-node-5:
+    <<: *default-base
+    container_name: ssv-node-5
+    environment:
+      CONFIG_PATH: ./config/ssv-node-5.yaml
+    ports:
+      - 16005:16005
+      - 17005:15005
+
+  dkg-node-5:
+    <<: *default-dkg
+    container_name: dkg-node-5
+    env_file: ./env/dkg-node-5.env
+    ports:
+      - 2505:2505
+
+  ssv-node-6:
+    <<: *default-base
+    container_name: ssv-node-6
+    environment:
+      CONFIG_PATH: ./config/ssv.node.6.yaml
+    ports:
+      - 16006:16006
+      - 17006:15006
+
+  dkg-node-6:
+    <<: *default-dkg
+    container_name: dkg-node-6
+    env_file: env/dkg.node.6.env
+    ports:
+      - 2506:2506
+
+  ssv-node-7:
+    <<: *default-base
+    container_name: ssv-node-7
+    environment:
+      CONFIG_PATH: ./config/ssv-node-7.yaml
+    ports:
+      - 16007:16007
+      - 17007:15007
+
+  dkg-node-7:
+    <<: *default-dkg
+    container_name: dkg-node-7
+    env_file: env/dkg-node-7.env
+    ports:
+      - 2507:2507
+
+  ssv-node-8:
+    <<: *default-base
+    container_name: ssv-node-8
+    environment:
+      CONFIG_PATH: ./config/ssv-node-8.yaml
+    ports:
+      - 16008:16008
+      - 17008:15008
+
+  dkg-node-8:
+    <<: *default-dkg
+    container_name: dkg-node-8
+    env_file: env/dkg-node-8.env
+    ports:
       - 2508:2508
-    volumes:
-      - ./keys:/keys
+
+  exporter-node:
+    <<: *default-base
+    container_name: exporter-node
+    environment:
+      CONFIG_PATH: ./config/ssv-exporter-node.yaml
+    ports:
+      - 16000:16000
+      - 16009:16009
+      - 17009:17009

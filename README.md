@@ -1,46 +1,73 @@
 # SSV DKG
 
-SSV operator node with RockX DKG support
+SSV with RockX DKG support
 
 ## Usage
 
-1. Clone the repository and submodules:
+1. Clone the repository:
 
-```bash
-git clone --recursive https://github.com/consensusnetworks/ssv-dkg.git
-```
+    ```bash
+    git clone https://github.com/consensusnetworks/ssv-dkg.git
+    ```
 
-2. Install prerequisites and copy templates:
+2. Install prerequisites:
 
-```bash
-./install.sh && cp example.env .env && cp example.config.yaml config.yaml && cp messenger/example.env messenger/.env
-```
+    ```bash
+    make install_prerequisites
+    ```
 
-3. Generate operator keys:
+3. Pull submodules:
 
-```bash
-docker run -d --name=ssv_node_op_key -it 'bloxstaking/ssv-node:latest' \
-/go/bin/ssvnode generate-operator-keys && docker logs ssv_node_op_key --follow \
-&& docker stop ssv_node_op_key && docker rm ssv_node_op_key
-```
+    ```bash
+    make pull_submodules
+    ```
 
-4. Replace any bracketed value descriptions (`somevar=<your-value-here>`) with your values in [.env](.env), [config.yaml](config.yaml), and [messenger/.env](messenger/.env).
+4. Copy example files:
 
-5. Create a new keystore:
+    ```bash
+    make copy_example_files
+    ```
 
-```bash
-mkdir keys
-clef newaccount --keystore keys
-```
+5. For each operator (1-8, represented by `n`):
 
-6. Start the node:
+    1. Generate new operator keys:
 
-```bash
-docker compose -p ssv-dkg-1 up -d
-```
+        ```bash
+        make generate_operator_keys
+        ```
 
-7. Start the messenger (if a messenger is not running already):
+    2. Fill in the `OperatorPrivateKey` in `./config/ssv.node.n.yaml`.
 
-```bash
-docker compose -f messenger/docker-compose.yaml -p ssv-dkg-messenger up -d
-```
+    3. Create a new keystore:
+
+        ```bash
+        make generate_keystore
+        ```
+
+    4. Fill in the `KEYSTORE_FULL_PATH`, `KEYSTORE_PASSWORD`, and `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
+
+6. Finally, run your required services (pick one of the following):
+
+    1. Run all services:
+
+        ```bash
+        make run_all
+        ```
+
+    2. Run a node (node 1):
+
+        ```bash
+        make run_node
+        ```
+
+    3. Run an exporter:
+
+        ```bash
+        make run_exporter
+        ```
+
+    4. Run a messenger:
+
+        ```bash
+        make run_messenger
+        ```

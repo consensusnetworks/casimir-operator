@@ -1,4 +1,8 @@
-.env
 keys
-db
-config.yaml
+data
+DS_Store
+/env/*
+!/env/example.*
+/config/*
+!/config/example.*
+

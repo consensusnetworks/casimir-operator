@@ -1,0 +1,11 @@
+db:
+  Path: ./data/db/ssv-node-3
+eth2:
+  Network: prater
+  BeaconNodeAddr: http://localhost:5052
+eth1:
+  ETH1Addr: ws://localhost:8546
+OperatorPrivateKey:
+p2p:
+  UdpPort: 16003
+  TcpPort: 17003

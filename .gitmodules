@@ -1,3 +1,6 @@
 [submodule "resources/rockx"]
 	path = resources/rockx
 	url = https://github.com/RockX-SG/rockx-dkg-cli.git
+[submodule "resources/ssv"]
+	path = resources/ssv
+	url = https://github.com/bloxapp/ssv.git
