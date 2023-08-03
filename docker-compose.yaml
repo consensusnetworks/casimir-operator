@@ -18,7 +18,7 @@ x-base:
 x-base-dkg:
   &default-dkg
   build:
-    context: ./resources/rockx
+    context: ./resources/dkg
     dockerfile: Dockerfile
   image: dkgnode:latest
   command: ./node
@@ -32,7 +32,7 @@ x-base-dkg:
 services:
   messenger:
     build:
-      context: ./resources/rockx
+      context: ./resources/dkg
       dockerfile: build/docker/messenger/Dockerfile
     image: messenger:latest
     command: ./messenger
