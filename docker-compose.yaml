@@ -27,6 +27,7 @@ x-base-dkg:
 
 services:
   dkg_messenger:
+    container_name: dkg_messenger
     build:
       context: ./resources/dkg
       dockerfile: build/docker/messenger/Dockerfile
@@ -168,7 +169,7 @@ services:
 
   ssv-exporter:
     <<: *default-base
-    container_name: exporter-node
+    container_name: ssv-exporter
     environment:
       CONFIG_PATH: ./config/ssv.exporter.yaml
     ports:
