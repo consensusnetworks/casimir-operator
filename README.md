@@ -1,6 +1,6 @@
 # SSV DKG
 
-SSV with RockX DKG support
+> SSV with RockX DKG support
 
 ## Usage
 
