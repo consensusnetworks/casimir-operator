@@ -30,7 +30,7 @@ x-base-dkg:
     - ./keys:/keys
 
 services:
-  messenger:
+  dkg_messenger:
     build:
       context: ./resources/dkg
       dockerfile: build/docker/messenger/Dockerfile
@@ -56,7 +56,7 @@ services:
   dkg-node-1:
     <<: *default-dkg
     container_name: dkg-node-1
-    env_file: ./env/dkg-node-1.env
+    env_file: ./env/dkg.node.1.env
     ports:
       - 2501:2501
 
@@ -104,7 +104,7 @@ services:
   dkg-node-4:
     <<: *default-dkg
     container_name: dkg-node-4
-    env_file: env/dkg.node.4.env
+    env_file: ./env/dkg.node.4.env
     ports:
       - 2504:2504
 
@@ -112,7 +112,7 @@ services:
     <<: *default-base
     container_name: ssv-node-5
     environment:
-      CONFIG_PATH: ./config/ssv-node-5.yaml
+      CONFIG_PATH: ./config/ssv.node.5.yaml
     ports:
       - 16005:16005
       - 17005:15005
@@ -120,7 +120,7 @@ services:
   dkg-node-5:
     <<: *default-dkg
     container_name: dkg-node-5
-    env_file: ./env/dkg-node-5.env
+    env_file: ./env/dkg.node.5.env
     ports:
       - 2505:2505
 
@@ -136,7 +136,7 @@ services:
   dkg-node-6:
     <<: *default-dkg
     container_name: dkg-node-6
-    env_file: env/dkg.node.6.env
+    env_file: ./env/dkg.node.6.env
     ports:
       - 2506:2506
 
@@ -144,7 +144,7 @@ services:
     <<: *default-base
     container_name: ssv-node-7
     environment:
-      CONFIG_PATH: ./config/ssv-node-7.yaml
+      CONFIG_PATH: ./config/ssv.node.7.yaml
     ports:
       - 16007:16007
       - 17007:15007
@@ -152,7 +152,7 @@ services:
   dkg-node-7:
     <<: *default-dkg
     container_name: dkg-node-7
-    env_file: env/dkg-node-7.env
+    env_file: ./env/dkg.node.7.env
     ports:
       - 2507:2507
 
@@ -160,7 +160,7 @@ services:
     <<: *default-base
     container_name: ssv-node-8
     environment:
-      CONFIG_PATH: ./config/ssv-node-8.yaml
+      CONFIG_PATH: ./config/ssv.node.8.yaml
     ports:
       - 16008:16008
       - 17008:15008
@@ -168,15 +168,15 @@ services:
   dkg-node-8:
     <<: *default-dkg
     container_name: dkg-node-8
-    env_file: env/dkg-node-8.env
+    env_file: ./env/dkg.node.8.env
     ports:
       - 2508:2508
 
-  exporter-node:
+  ssv-exporter:
     <<: *default-base
     container_name: exporter-node
     environment:
-      CONFIG_PATH: ./config/ssv-exporter-node.yaml
+      CONFIG_PATH: ./config/ssv.exporter.yaml
     ports:
       - 16000:16000
       - 16009:16009
