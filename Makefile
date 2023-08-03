@@ -20,30 +20,30 @@ generate_keystore:
 
 run_all:
 	if [ "$$(uname)" = "Linux" ]; then \
-		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d; \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d; \
 	else \
-		docker-compose up -d; \
+		docker compose up -d; \
 	fi
 
 run_node:
 	if [ "$$(uname)" = "Linux" ]; then \
-		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-node-1 dkg-node-1; \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-node-1 dkg-node-1; \
 	else \
-		docker-compose up -d --build ssv-node-1 dkg-node-1; \
+		docker compose up -d --build ssv-node-1 dkg-node-1; \
 	fi
 
 run_exporter:
 	if [ "$$(uname)" = "Linux" ]; then \
-		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-exporter; \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-exporter; \
 	else \
-		docker-compose up -d --build ssv-exporter; \
+		docker compose up -d --build ssv-exporter; \
 	fi
 
 run_messenger:
 	if [ "$$(uname)" = "Linux" ]; then \
-		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build dkg-messenger; \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build dkg-messenger; \
 	else \
-		docker-compose up -d --build dkg-messenger; \
+		docker compose up -d --build dkg-messenger; \
 	fi
 
 
