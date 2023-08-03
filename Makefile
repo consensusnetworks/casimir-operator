@@ -1,6 +1,3 @@
-install_prerequisites:
-	./scripts/install.sh
-
 pull_submodules:
 	git submodule update --init --recursive
 
@@ -45,5 +42,34 @@ run_messenger:
 	else \
 		docker compose up -d --build dkg-messenger; \
 	fi
+
+stop_all:
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down; \
+	else \
+		docker compose down; \
+	fi
+
+stop_node:
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down ssv-node-1 dkg-node-1; \
+	else \
+		docker compose down ssv-node-1 dkg-node-1; \
+	fi
+
+stop_exporter:
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down ssv-exporter; \
+	else \
+		docker compose down ssv-exporter; \
+	fi
+
+stop_messenger:
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml down dkg-messenger; \
+	else \
+		docker compose down dkg-messenger; \
+	fi
+
 
 
