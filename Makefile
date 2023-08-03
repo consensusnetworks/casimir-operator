@@ -19,15 +19,31 @@ generate_keystore:
 	mkdir -p keys && clef newaccount --keystore keys
 
 run_all:
-	docker-compose up -d
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d; \
+	else \
+		docker-compose up -d; \
+	fi
 
 run_node:
-	docker-compose up -d --build ssv-node-1 dkg-node-1
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-node-1 dkg-node-1; \
+	else \
+		docker-compose up -d --build ssv-node-1 dkg-node-1; \
+	fi
 
 run_exporter:
-	docker-compose up -d --build ssv-exporter
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build ssv-exporter; \
+	else \
+		docker-compose up -d --build ssv-exporter; \
+	fi
 
 run_messenger:
-	docker-compose up -d --build dkg-messenger
+	if [ "$$(uname)" = "Linux" ]; then \
+		docker-compose -f docker-compose.yaml -f docker-compose.override.yaml up -d --build dkg-messenger; \
+	else \
+		docker-compose up -d --build dkg-messenger; \
+	fi
 
 

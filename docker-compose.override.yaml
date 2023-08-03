@@ -1,0 +1,16 @@
+version: '3.7'
+
+x-base:
+  &default-base
+  extra_hosts:
+    - host.docker.internal:host-gateway
+
+x-base-dkg:
+  &default-dkg
+  extra_hosts:
+    - host.docker.internal:host-gateway
+
+services:
+  dkg_messenger:
+    extra_hosts:
+      - host.docker.internal:host-gateway
