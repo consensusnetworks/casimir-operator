@@ -12,9 +12,6 @@ copy_example_files:
 generate_operator_keys:
 	docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys
 
-generate_keystore:
-	mkdir -p keys && clef newaccount --keystore keys
-
 run_all:
 	docker compose up -d;
 

@@ -22,8 +22,6 @@ x-base-dkg-node:
   command: ./node
   network_mode: host
   restart: on-failure
-  volumes:
-    - ./keys:/keys
 
 services:
   dkg-messenger:

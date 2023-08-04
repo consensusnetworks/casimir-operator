@@ -32,13 +32,7 @@
 
     2. Fill in the `OperatorPrivateKey` in `./config/ssv.node.n.yaml`.
 
-    3. Create a new keystore:
-
-        ```bash
-        make generate_keystore
-        ```
-
-    4. Fill in the `KEYSTORE_FULL_PATH`, `KEYSTORE_PASSWORD`, and `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
+    3. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
 
 5. Run your required services (pick one of the following):
 
