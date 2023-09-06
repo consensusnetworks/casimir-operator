@@ -4,7 +4,7 @@ eth2:
   Network: prater
   BeaconNodeAddr: http://localhost:5052
 eth1:
-  ETH1Addr: ws://localhost:8546
+  ETH1Addr: ws://localhost:8545
 GenerateOperatorPrivateKey: true
 ssv:
   DutyLimit: 32
