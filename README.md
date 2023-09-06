@@ -16,74 +16,128 @@
     make pull_submodules
     ```
 
-3. Copy example files:
+3. Create a `.env` file:
 
     ```bash
-    make copy_example_files
+    touch .env
     ```
 
-4. For each operator (1-8, represented by `n`):
+4. Configure your required services:
 
-    1. Generate new operator keys:
+    1. Configure a single node:
 
-        ```bash
-        make generate_operator_keys
-        ```
+        1. Set the `SERVICES` variable in your `.env` to a single node:
 
-    2. Fill in the `OperatorPrivateKey` in `./config/ssv.node.n.yaml`.
+            ```bash
+            echo "SERVICES=node" >> .env
+            ```
 
-    3. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
+        2. Copy the example config files:
 
-5. Run your required services (pick one of the following):
+            ```bash
+            make copy_example_files
+            ```
 
-    1. Run all services:
+        3. Generate new operator keys:
 
-        ```bash
-        make run_all
-        ```
+            ```bash
+            make generate_operator_keys
+            ```
 
-    2. Run a node (node 1):
+        4. Fill in the `OperatorPrivateKey` in `./config/ssv.node.yaml`.
 
-        ```bash
-        make run_node
-        ```
+        5. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.env`.
+  
+        6. Update the `eth1.ETH1Addr` in `./config/ssv.node.yaml` to point to the correct eth1 node.
 
-    3. Run an exporter:
+        7. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.yaml` to point to the correct beacon node.
 
-        ```bash
-        make run_exporter
-        ```
+    2. Run multiple nodes:
 
-    4. Run a messenger:
+        1. Set the `SERVICES` variable in your `.env` to multiple nodes (max 8):
 
-        ```bash
-        make run_messenger
-        ```
+            ```bash
+            echo "SERVICES=node.1,node.2,node.3,node.4" >> .env
+            ```
 
-6. Update your required services by rerunning your command from above.
+        2. Copy the example config files:
 
-7. Stop your services:
+            ```bash
+            make copy_example_files
+            ```
 
-    1. Stop all services:
+        3. For each node (number represented with `n`):
 
-        ```bash
-        make stop_all
-        ```
+            1. Generate new operator keys:
 
-    2. Stop a node (node 1):
+               ```bash
+               make generate_operator_keys
+               ```
 
-        ```bash
-        make stop_node
-        ```
+            2. Fill in the `OperatorPrivateKey` in `./config/ssv.node.n.yaml`.
 
-    3. Stop an exporter:
+            3. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
 
-        ```bash
-        make stop_exporter
-        ```
+            4. Update the `eth1.ETH1Addr` in `./config/ssv.node.n.yaml` to point to the correct eth1 node.
 
-    4. Stop a messenger:
+            5. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.n.yaml` to point to the correct beacon node.
 
-        ```bash
-        make stop_messenger
-        ```
+    3. Configure an exporter node:
+
+        1. Set the `SERVICES` variable in your `.env` to the exporter node:
+
+            ```bash
+            echo "SERVICES=exporter" >> .env
+            ```
+
+        2. Copy the example config files:
+
+            ```bash
+            make copy_example_files
+            ```
+
+        3. Update the `eth1.ETH1Addr` in `./config/ssv.exporter.yaml` to point to the correct execution node RPC URL.
+
+        4. Update the `eth2.BeaconNodeAddr` in `./config/ssv.exporter.yaml` to point to the correct consensus node RPC URL.
+
+    4. Configure a messenger server:
+
+        1. Set the `SERVICES` variable in your `.env` to the messenger server:
+
+            ```bash
+            echo "SERVICES=messenger" >> .env
+            ```
+
+        2. Copy the example config files:
+
+            ```bash
+            make copy_example_files
+            ```
+
+    5. Configure multiple services:
+
+        1. Set the `SERVICES` variable in your `.env` to multiple services:
+
+            ```bash
+            echo "SERVICES=node.1,node.2,node.3,node.4,exporter,messenger" >> .env
+            ```
+
+        2. Copy the example config files:
+
+            ```bash
+            make copy_example_files
+            ```
+
+        3. Follow the specific file configuration steps for each service (skip steps 1 and 2).
+
+5. Run your required services with docker-compose:
+
+    ```bash
+    make run
+    ```
+
+6. Stop all running services:
+
+    ```bash
+    make stop
+    ```

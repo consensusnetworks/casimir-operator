@@ -2,39 +2,44 @@ pull_submodules:
 	git submodule update --init --recursive
 
 copy_example_files:
-	for file in ./env/example.*.env; do \
-		cp $$file ./env/`basename $$file | sed 's/example.//g'`; \
-	done
-	for file in ./config/example.*.yaml; do \
-		cp $$file ./config/`basename $$file | sed 's/example.//g'`; \
+	$(eval SERVICES := $(shell echo $(SERVICES) | tr ',' '\n'))
+	for service in $(SERVICES); do \
+		if [ $$service = "node" ]; then \
+			cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
+			cp ./env/example.dkg.node.env ./env/dkg.node.env; \
+		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
+			n=`echo $$service | sed 's/node.//g'`; \
+			cp ./config/example.ssv.node.yaml ./config/ssv.node.$$n.yaml; \
+			cp ./env/example.dkg.node.env ./env/dkg.node.$$n.env; \
+		elif [ $$service = "exporter" ]; then \
+			cp ./config/example.ssv.exporter.yaml ./config/ssv.exporter.yaml; \
+		elif [ $$service = "messenger" ]; then \
+			cp ./env/example.dkg.messenger.env ./env/dkg.messenger.env; \
+		fi \
 	done
 
 generate_operator_keys:
 	docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys
 
-run_all:
-	docker compose up -d;
+run:
+	$(eval SERVICES := $(shell echo $(SERVICES) | tr ',' '\n'))
+	services=""
+	for service in $(SERVICES); do \
+		if [ $$service = "node" ]; then \
+			services="$$services ssv-node dkg-node"; \
+		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
+			n=`echo $$service | sed 's/node.//g'`; \
+			services="$$services ssv-node-$$n dkg-node-$$n"; \
+		elif [ $$service = "exporter" ]; then \
+			services="$$services ssv-exporter"; \
+		elif [ $$service = "messenger" ]; then \
+			services="$$services dkg-messenger"; \
+		fi \
+	done; \
+	docker compose up -d --build $$services;
 
-run_node:
-	docker compose up -d --build ssv-node-1 dkg-node-1;
-
-run_exporter:
-	docker compose up -d --build ssv-exporter;
-
-run_messenger:
-	docker compose up -d --build dkg-messenger;
-
-stop_all:
+stop:
 	docker compose down;
-
-stop_node:
-	docker compose down ssv-node-1 dkg-node-1;
-
-stop_exporter:
-	docker compose down ssv-exporter;
-
-stop_messenger:
-	docker compose down dkg-messenger;
 
 
 

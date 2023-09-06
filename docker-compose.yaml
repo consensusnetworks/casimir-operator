@@ -37,6 +37,22 @@ services:
     ports: 
       - 3500:3500
 
+  ssv-node:
+    <<: *default-ssv-node
+    container_name: ssv-node
+    environment:
+      CONFIG_PATH: ./config/ssv.node.yaml
+    ports:
+      - 16000:16000
+      - 17000:15000
+
+  dkg-node:
+    <<: *default-dkg-node
+    container_name: dkg-node
+    env_file: ./env/dkg.node.env
+    ports:
+      - 2500:2500
+
   ssv-node-1:
     <<: *default-ssv-node
     container_name: ssv-node-1

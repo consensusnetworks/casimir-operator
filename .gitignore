@@ -1,6 +1,7 @@
 keys
 data
 DS_Store
+.env
 /env/*
 !/env/example.*
 /config/*
