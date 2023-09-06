@@ -24,7 +24,7 @@
 
 4. Configure your required services:
 
-    1. Configure a single node:
+    1. Configure a **single node**:
 
         1. Set the `SERVICES` variable in your `.env` to a single node:
 
@@ -52,7 +52,7 @@
 
         7. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.yaml` to point to the correct beacon node.
 
-    2. Run multiple nodes:
+    2. Configure **multiple nodes**:
 
         1. Set the `SERVICES` variable in your `.env` to multiple nodes (max 8):
 
@@ -82,7 +82,7 @@
 
             5. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.n.yaml` to point to the correct beacon node.
 
-    3. Configure an exporter node:
+    3. Configure an **exporter node**:
 
         1. Set the `SERVICES` variable in your `.env` to the exporter node:
 
@@ -100,7 +100,7 @@
 
         4. Update the `eth2.BeaconNodeAddr` in `./config/ssv.exporter.yaml` to point to the correct consensus node RPC URL.
 
-    4. Configure a messenger server:
+    4. Configure a **messenger server**:
 
         1. Set the `SERVICES` variable in your `.env` to the messenger server:
 
@@ -114,7 +114,7 @@
             make copy_example_files
             ```
 
-    5. Configure multiple services:
+    5. Configure **multiple services**:
 
         1. Set the `SERVICES` variable in your `.env` to multiple services:
 
