@@ -5,7 +5,7 @@ pull_submodules:
 	git submodule update --init --recursive
 
 copy_example_files:
-	for service in $(services); do \
+	@for service in $(services); do \
 		if [ $$service = "node" ]; then \
 			cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
 			cp ./env/example.dkg.node.env ./env/dkg.node.env; \
@@ -28,21 +28,20 @@ generate_operator_keys:
 	docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys
 
 run:
-	$(eval SERVICES := $(shell echo $(SERVICES) | tr ',' '\n'))
-	services=""
-	for service in $(SERVICES); do \
+	stack=""
+	@for service in $(services); do \
 		if [ $$service = "node" ]; then \
-			services="$$services ssv-node dkg-node"; \
+			stack="$$stack ssv-node dkg-node"; \
 		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
 			n=`echo $$service | sed 's/node.//g'`; \
-			services="$$services ssv-node-$$n dkg-node-$$n"; \
+			stack="$$stack ssv-node-$$n dkg-node-$$n"; \
 		elif [ $$service = "exporter" ]; then \
-			services="$$services ssv-exporter"; \
+			stack="$$stack ssv-exporter"; \
 		elif [ $$service = "messenger" ]; then \
-			services="$$services dkg-messenger"; \
+			stack="$$stack dkg-messenger"; \
 		fi \
 	done; \
-	docker compose up -d --build $$services;
+	docker compose up -d --build $$stack;
 
 stop:
 	docker compose down;

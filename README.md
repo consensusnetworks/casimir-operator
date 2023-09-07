@@ -42,11 +42,15 @@
 
         4. Fill in the `OperatorPrivateKey` in `./config/ssv.node.yaml`.
 
-        5. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.env`.
-  
-        6. Update the `eth1.ETH1Addr` in `./config/ssv.node.yaml` to point to the correct eth1 node.
+        5. Update the `eth1.ETH1Addr` in `./config/ssv.node.yaml` to point to the correct eth1 node.
 
-        7. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.yaml` to point to the correct beacon node.
+        6. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.yaml` to point to the correct beacon node.
+
+        7. Copy the operator public key and [register it with SSV network](https://docs.ssv.network/run-a-node/operator-node/registration) to get an operator ID.
+
+        8. Fill in the `NODE_OPERATOR_ID` in `./env/dkg.node.env`.
+
+        9. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.env`.
 
     2. Configure **multiple nodes**:
 
@@ -68,11 +72,15 @@
 
             2. Fill in the `OperatorPrivateKey` in `./config/ssv.node.n.yaml`.
 
-            3. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
+            3. Update the `eth1.ETH1Addr` in `./config/ssv.node.n.yaml` to point to the correct eth1 node.
 
-            4. Update the `eth1.ETH1Addr` in `./config/ssv.node.n.yaml` to point to the correct eth1 node.
+            4. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.n.yaml` to point to the correct beacon node.
 
-            5. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.n.yaml` to point to the correct beacon node.
+            5. Copy the operator public key and [register it with SSV network](https://docs.ssv.network/run-a-node/operator-node/registration) to get an operator ID.
+
+            6. Fill in the `NODE_OPERATOR_ID` in `./env/dkg.node.n.env`.
+
+            7. Fill in the `OPERATOR_PRIVATE_KEY` in `./env/dkg.node.n.env`.
 
     3. Configure an **exporter node**:
 
