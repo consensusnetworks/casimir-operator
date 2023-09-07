@@ -9,7 +9,7 @@ copy_example_files:
 		if [ $$service = "node" ]; then \
 			cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
 			cp ./env/example.dkg.node.env ./env/dkg.node.env; \
-		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
+		elif [ $$service =~ ^node.[0-9]+$$ ]; then \
 			n=`echo $$service | sed 's/node.//g'`; \
 			cp ./config/example.ssv.node.yaml ./config/ssv.node.$$n.yaml; \
 			cp ./env/example.dkg.node.env ./env/dkg.node.$$n.env; \
