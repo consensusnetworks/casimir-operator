@@ -7,5 +7,5 @@ eth1:
   ETH1Addr: ws://localhost:8545
 OperatorPrivateKey:
 p2p:
-  UdpPort: 16001
-  TcpPort: 17001
+  UdpPort: 16000
+  TcpPort: 17000
