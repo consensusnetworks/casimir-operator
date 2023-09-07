@@ -26,11 +26,7 @@
 
     1. Configure a **single node**:
 
-        1. Set the `SERVICES` variable in your `.env` to a single node:
-
-            ```bash
-            echo "SERVICES=node" >> .env
-            ```
+        1. Set `SERVICES=node` in your `.env` file.
 
         2. Copy the example config files:
 
@@ -54,11 +50,7 @@
 
     2. Configure **multiple nodes**:
 
-        1. Set the `SERVICES` variable in your `.env` to multiple nodes (max 8):
-
-            ```bash
-            echo "SERVICES=node.1,node.2,node.3,node.4" >> .env
-            ```
+        1. Set `SERVICES=node.1,node.2,node.3,node.4` in your `.env` file, or include as many nodes as you want up to 8.
 
         2. Copy the example config files:
 
@@ -84,11 +76,7 @@
 
     3. Configure an **exporter node**:
 
-        1. Set the `SERVICES` variable in your `.env` to the exporter node:
-
-            ```bash
-            echo "SERVICES=exporter" >> .env
-            ```
+        1. Set `SERVICES=exporter` in your `.env` file.
 
         2. Copy the example config files:
 
@@ -102,7 +90,7 @@
 
     4. Configure a **messenger server**:
 
-        1. Set the `SERVICES` variable in your `.env` to the messenger server:
+        1. Set `SERVICES=messenger` in your `.env` file.
 
             ```bash
             echo "SERVICES=messenger" >> .env
@@ -116,7 +104,7 @@
 
     5. Configure **multiple services**:
 
-        1. Set the `SERVICES` variable in your `.env` to multiple services:
+        1. Set `SERVICES=node.1,node.2,node.3,node.4,exporter,messenger` in your `.env` file, or include as many nodes as you want up to 8.
 
             ```bash
             echo "SERVICES=node.1,node.2,node.3,node.4,exporter,messenger" >> .env
