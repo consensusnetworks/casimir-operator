@@ -1,11 +1,12 @@
-services_str := $(shell grep SERVICES .env | cut -d '=' -f2)
-services := $(shell echo $(services_str) | tr ',' '\n') 
+SHELL := /bin/bash
+SERVICES := $(shell grep SERVICES .env | cut -d '=' -f2)
+SERVICE_LIST := $(shell echo $(SERVICES) | tr ',' '\n') 
 
 pull_submodules:
 	git submodule update --init --recursive
 
 copy_example_files:
-	@for service in $(services); do \
+	@for service in $(SERVICE_LIST); do \
 		if [ $$service = "node" ]; then \
 			cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
 			cp ./env/example.dkg.node.env ./env/dkg.node.env; \
@@ -29,7 +30,7 @@ generate_operator_keys:
 
 run:
 	stack=""
-	@for service in $(services); do \
+	@for service in $(SERVICE_LIST); do \
 		if [ $$service = "node" ]; then \
 			stack="$$stack ssv-node dkg-node"; \
 		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
