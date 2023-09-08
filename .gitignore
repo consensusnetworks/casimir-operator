@@ -6,4 +6,5 @@ DS_Store
 !/env/example.*
 /config/*
 !/config/example.*
+docker-compose.override.yaml
 

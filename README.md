@@ -10,10 +10,10 @@
     git clone https://github.com/consensusnetworks/ssv-dkg.git
     ```
 
-2. Pull submodules:
+2. Install submodules:
 
     ```bash
-    make pull_submodules
+    make install
     ```
 
 3. Create a `.env` file:
@@ -31,7 +31,7 @@
         2. Copy the example config files:
 
             ```bash
-            make copy_example_files
+            make copy
             ```
 
         3. Generate new operator keys:
@@ -59,7 +59,7 @@
         2. Copy the example config files:
 
             ```bash
-            make copy_example_files
+            make copy
             ```
 
         3. For each node (number represented with `n`):
@@ -89,7 +89,7 @@
         2. Copy the example config files:
 
             ```bash
-            make copy_example_files
+            make copy
             ```
 
         3. Update the `eth1.ETH1Addr` in `./config/ssv.exporter.yaml` to point to the correct execution node RPC URL.
@@ -107,7 +107,7 @@
         2. Copy the example config files:
 
             ```bash
-            make copy_example_files
+            make copy
             ```
 
     5. Configure **multiple services**:
@@ -121,7 +121,7 @@
         2. Copy the example config files:
 
             ```bash
-            make copy_example_files
+            make copy
             ```
 
         3. Follow the specific file configuration steps for each service (skip steps 1 and 2).

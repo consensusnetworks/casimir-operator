@@ -1,5 +1,4 @@
-version: '3.7'
-
+version: '3.8'
 x-base-ssv-node:
   &default-ssv-node
   build:
@@ -12,7 +11,6 @@ x-base-ssv-node:
   volumes:
     - ./data:/data
     - ./config:/config
-
 x-base-dkg-node:
   &default-dkg-node
   build:
@@ -22,7 +20,6 @@ x-base-dkg-node:
   command: ./node
   network_mode: host
   restart: on-failure
-
 services:
   dkg-messenger:
     container_name: dkg-messenger
@@ -36,7 +33,6 @@ services:
     restart: on-failure
     ports: 
       - 3500:3500
-
   ssv-node:
     <<: *default-ssv-node
     container_name: ssv-node
@@ -45,14 +41,12 @@ services:
     ports:
       - 16000:16000
       - 17000:15000
-
   dkg-node:
     <<: *default-dkg-node
     container_name: dkg-node
     env_file: ./env/dkg.node.env
     ports:
       - 2500:2500
-
   ssv-node-1:
     <<: *default-ssv-node
     container_name: ssv-node-1
@@ -61,14 +55,12 @@ services:
     ports:
       - 16001:16001
       - 17001:15001
-
   dkg-node-1:
     <<: *default-dkg-node
     container_name: dkg-node-1
     env_file: ./env/dkg.node.1.env
     ports:
       - 2501:2501
-
   ssv-node-2:
     <<: *default-ssv-node
     container_name: ssv-node-2
@@ -77,14 +69,12 @@ services:
     ports:
       - 16002:16002
       - 17002:15002
-
   dkg-node-2:
     <<: *default-dkg-node
     container_name: dkg-node-2
     env_file: ./env/dkg.node.2.env
     ports:
       - 2502:2502
-
   ssv-node-3:
     <<: *default-ssv-node
     container_name: ssv-node-3
@@ -93,14 +83,12 @@ services:
     ports:
       - 16003:16003
       - 17003:15003
-
   dkg-node-3:
     <<: *default-dkg-node
     container_name: dkg-node-3
     env_file: ./env/dkg.node.3.env
     ports:
       - 2503:2503
-
   ssv-node-4:
     <<: *default-ssv-node
     container_name: ssv-node-4
@@ -109,14 +97,12 @@ services:
     ports:
       - 16004:16004
       - 17004:15004
-
   dkg-node-4:
     <<: *default-dkg-node
     container_name: dkg-node-4
     env_file: ./env/dkg.node.4.env
     ports:
       - 2504:2504
-
   ssv-node-5:
     <<: *default-ssv-node
     container_name: ssv-node-5
@@ -125,14 +111,12 @@ services:
     ports:
       - 16005:16005
       - 17005:15005
-
   dkg-node-5:
     <<: *default-dkg-node
     container_name: dkg-node-5
     env_file: ./env/dkg.node.5.env
     ports:
       - 2505:2505
-
   ssv-node-6:
     <<: *default-ssv-node
     container_name: ssv-node-6
@@ -141,14 +125,12 @@ services:
     ports:
       - 16006:16006
       - 17006:15006
-
   dkg-node-6:
     <<: *default-dkg-node
     container_name: dkg-node-6
     env_file: ./env/dkg.node.6.env
     ports:
       - 2506:2506
-
   ssv-node-7:
     <<: *default-ssv-node
     container_name: ssv-node-7
@@ -157,14 +139,12 @@ services:
     ports:
       - 16007:16007
       - 17007:15007
-
   dkg-node-7:
     <<: *default-dkg-node
     container_name: dkg-node-7
     env_file: ./env/dkg.node.7.env
     ports:
       - 2507:2507
-
   ssv-node-8:
     <<: *default-ssv-node
     container_name: ssv-node-8
@@ -173,14 +153,12 @@ services:
     ports:
       - 16008:16008
       - 17008:15008
-
   dkg-node-8:
     <<: *default-dkg-node
     container_name: dkg-node-8
     env_file: ./env/dkg.node.8.env
     ports:
       - 2508:2508
-
   ssv-exporter:
     <<: *default-ssv-node
     container_name: ssv-exporter
