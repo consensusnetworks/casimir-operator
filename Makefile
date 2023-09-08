@@ -16,21 +16,33 @@ copy:
 	for service in $(SERVICE_LIST); do \
 		echo "Copying files for $$service"; \
 		if [[ $$service == "node" ]]; then \
-			cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
-			cp ./env/example.dkg.node.env ./env/dkg.node.env; \
+			if [ ! -f "./config/ssv.node.yaml" ]; then \
+				cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
+			fi; \
+			if [ ! -f "./env/dkg.node.env" ]; then \
+				cp ./env/example.dkg.node.env ./env/dkg.node.env; \
+			fi; \
 			overrides="$$overrides dkg-node"; \
 		elif [[ $$service =~ ^node\.[1-8]$$ ]]; then \
 			n=$$(echo $$service | sed 's/node\.//g'); \
-			cp ./config/example.ssv.node.yaml ./config/ssv.node.$$n.yaml; \
-			cp ./env/example.dkg.node.env ./env/dkg.node.$$n.env; \
+			if [ ! -f "./config/ssv.node.$$n.yaml" ]; then \
+				cp ./config/example.ssv.node.yaml ./config/ssv.node.$$n.yaml; \
+			fi; \
+			if [ ! -f "./env/dkg.node.$$n.env" ]; then \
+				cp ./env/example.dkg.node.env ./env/dkg.node.$$n.env; \
+			fi; \
 			sed $(SED_INPLACE) "s|./data/db/ssv-node|./data/db/ssv-node-$$n|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|16000|$$(($$((16000)) + $$n))|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|2500|$$(($$((2500)) + $$n))|g" ./env/dkg.node.$$n.env; \
 			overrides="$$overrides dkg-node-$$n"; \
 		elif [[ $$service == "exporter" ]]; then \
-			cp ./config/example.ssv.exporter.yaml ./config/ssv.exporter.yaml; \
+			if [ ! -f "./config/ssv.exporter.yaml" ]; then \
+				cp ./config/example.ssv.exporter.yaml ./config/ssv.exporter.yaml; \
+			fi; \
 		elif [[ $$service == "messenger" ]]; then \
-			cp ./env/example.dkg.messenger.env ./env/dkg.messenger.env; \
+			if [ ! -f "./config/dkg.messenger.yaml" ]; then \
+				cp ./config/example.dkg.messenger.yaml ./config/dkg.messenger.yaml; \
+			fi; \
 			overrides="$$overrides dkg-messenger"; \
 		fi; \
 	done; \
