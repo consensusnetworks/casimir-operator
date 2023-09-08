@@ -34,21 +34,19 @@ generate_operator_keys:
 run:
 	@stack=""
 	for service in $(SERVICE_LIST); do \
+		echo "Running stack for $$service"; \
 		if [ $$service = "node" ]; then \
-			echo "Starting ssv-node and dkg-node"; \
 			stack="$$stack ssv-node dkg-node"; \
 		elif [[ "$$service" =~ ^node\.[1-8]$$ ]]; then \
 			n=$$(echo $$service | sed 's/node\.//g'); \
-			echo "Starting ssv-node-$$n and dkg-node-$$n"; \
 			stack="$$stack ssv-node-$$n dkg-node-$$n"; \
 		elif [ $$service = "exporter" ]; then \
-			echo "Starting ssv-exporter"; \
 			stack="$$stack ssv-exporter"; \
 		elif [ $$service = "messenger" ]; then \
-			echo "Starting dkg-messenger"; \
 			stack="$$stack dkg-messenger"; \
 		fi \
 	done; \
+	echo "Stack list: $$stack"; \
 	docker compose up -d --build $$stack;
 
 stop:
