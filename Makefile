@@ -55,7 +55,7 @@ copy:
 		elif [[ $$service =~ "node" ]]; then \
 			echo "      - ./env/example.dkg.node.env" >> docker-compose.override.yaml; \
 		fi; \
-	done; \
+	done
 
 generate_operator_keys:
 	@docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys
@@ -76,7 +76,12 @@ run:
 		fi; \
 	done; \
 	echo "Running stack: $$stack"; \
-	docker compose up $$stack -d
+	# If docker-compose.override.yaml exists, use it, otherwise use only docker-compose.yaml
+	if [ -f docker-compose.override.yaml ]; then \
+		docker compose -f docker-compose.yaml -f docker-compose.override.yaml up $$stack -d; \
+	else \
+		docker compose up $$stack -d; \
+	fi
 
 stop:
 	@echo "Stopping all services"; \
