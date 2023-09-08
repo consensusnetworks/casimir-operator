@@ -13,7 +13,7 @@ pull_submodules:
 
 copy_example_files:
 	@for service in $(SERVICE_LIST); do \
-		echo "Processing $$service"; \
+		echo "Copying files for $$service"; \
 		if [[ "$$service" == "node" ]]; then \
 			cp ./config/example.ssv.node.yaml ./config/ssv.node.yaml; \
 			cp ./env/example.dkg.node.env ./env/dkg.node.env; \
@@ -35,19 +35,24 @@ run:
 	@stack=""
 	for service in $(SERVICE_LIST); do \
 		if [ $$service = "node" ]; then \
+			echo "Starting ssv-node and dkg-node"; \
 			stack="$$stack ssv-node dkg-node"; \
 		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
+			echo "Starting ssv-node-$$n and dkg-node-$$n"; \
 			n=`echo $$service | sed 's/node.//g'`; \
 			stack="$$stack ssv-node-$$n dkg-node-$$n"; \
 		elif [ $$service = "exporter" ]; then \
+			echo "Starting ssv-exporter"; \
 			stack="$$stack ssv-exporter"; \
 		elif [ $$service = "messenger" ]; then \
+			echo "Starting dkg-messenger"; \
 			stack="$$stack dkg-messenger"; \
 		fi \
 	done; \
 	docker compose up -d --build $$stack;
 
 stop:
-	@docker compose down;
+	@echo "Stopping all services"; \
+	docker compose down;
 
 
