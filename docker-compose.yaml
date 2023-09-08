@@ -29,7 +29,6 @@ services:
     image: dkgmessenger:latest
     command: ./messenger
     network_mode: host
-    env_file: ./env/dkg.messenger.env
     restart: on-failure
     ports: 
       - 3500:3500
@@ -44,7 +43,6 @@ services:
   dkg-node:
     <<: *default-dkg-node
     container_name: dkg-node
-    env_file: ./env/dkg.node.env
     ports:
       - 2500:2500
   ssv-node-1:
@@ -58,7 +56,6 @@ services:
   dkg-node-1:
     <<: *default-dkg-node
     container_name: dkg-node-1
-    env_file: ./env/dkg.node.1.env
     ports:
       - 2501:2501
   ssv-node-2:
@@ -72,7 +69,6 @@ services:
   dkg-node-2:
     <<: *default-dkg-node
     container_name: dkg-node-2
-    env_file: ./env/dkg.node.2.env
     ports:
       - 2502:2502
   ssv-node-3:
@@ -86,7 +82,6 @@ services:
   dkg-node-3:
     <<: *default-dkg-node
     container_name: dkg-node-3
-    env_file: ./env/dkg.node.3.env
     ports:
       - 2503:2503
   ssv-node-4:
@@ -100,7 +95,6 @@ services:
   dkg-node-4:
     <<: *default-dkg-node
     container_name: dkg-node-4
-    env_file: ./env/dkg.node.4.env
     ports:
       - 2504:2504
   ssv-node-5:
@@ -114,7 +108,6 @@ services:
   dkg-node-5:
     <<: *default-dkg-node
     container_name: dkg-node-5
-    env_file: ./env/dkg.node.5.env
     ports:
       - 2505:2505
   ssv-node-6:
@@ -128,7 +121,6 @@ services:
   dkg-node-6:
     <<: *default-dkg-node
     container_name: dkg-node-6
-    env_file: ./env/dkg.node.6.env
     ports:
       - 2506:2506
   ssv-node-7:
@@ -142,7 +134,6 @@ services:
   dkg-node-7:
     <<: *default-dkg-node
     container_name: dkg-node-7
-    env_file: ./env/dkg.node.7.env
     ports:
       - 2507:2507
   ssv-node-8:
@@ -156,7 +147,6 @@ services:
   dkg-node-8:
     <<: *default-dkg-node
     container_name: dkg-node-8
-    env_file: ./env/dkg.node.8.env
     ports:
       - 2508:2508
   ssv-exporter:
