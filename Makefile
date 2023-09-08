@@ -37,7 +37,7 @@ run:
 		if [ $$service = "node" ]; then \
 			echo "Starting ssv-node and dkg-node"; \
 			stack="$$stack ssv-node dkg-node"; \
-		elif [[ $$service =~ ^node.[0-9]+$$ ]]; then \
+		elif [[ "$$service" =~ ^node\.[1-8]$$ ]]; then \
 			echo "Starting ssv-node-$$n and dkg-node-$$n"; \
 			n=`echo $$service | sed 's/node.//g'`; \
 			stack="$$stack ssv-node-$$n dkg-node-$$n"; \
