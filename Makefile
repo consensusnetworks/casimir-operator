@@ -33,6 +33,7 @@ copy:
 			fi; \
 			sed $(SED_INPLACE) "s|./data/db/ssv-node|./data/db/ssv-node-$$n|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|16000|$$(($$((16000)) + $$n))|g" ./config/ssv.node.$$n.yaml; \
+			sed $(SED_INPLACE) "s|17000|$$(($$((16000)) + $$n))|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|2500|$$(($$((2500)) + $$n))|g" ./env/dkg.node.$$n.env; \
 			overrides="$$overrides dkg-node-$$n"; \
 		elif [[ $$service == "exporter" ]]; then \
