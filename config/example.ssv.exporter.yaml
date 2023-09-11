@@ -1,17 +1,17 @@
 db:
   Path: ./data/db/ssv-exporter
-eth2:
-  Network: prater
-  BeaconNodeAddr: http://localhost:5052
-eth1:
-  ETH1Addr: ws://localhost:8545
-GenerateOperatorPrivateKey: true
 ssv:
+  Network: jato-v2
   DutyLimit: 32
   ValidatorOptions:
     SignatureCollectionTimeout: 5s
     FullNode: true
     Exporter: true
+eth2:
+  BeaconNodeAddr: http://localhost:5052
+eth1:
+  ETH1Addr: ws://localhost:8545
+GenerateOperatorPrivateKey: true
 WebSocketAPIPort: 16000
 p2p:
   UdpPort: 16009
