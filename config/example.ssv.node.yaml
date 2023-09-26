@@ -3,9 +3,9 @@ db:
 ssv:
   Network: jato-v2
 eth2:
-  BeaconNodeAddr: http://localhost:5052
+  BeaconNodeAddr: http://127.0.0.1:5052
 eth1:
-  ETH1Addr: ws://localhost:8545
+  ETH1Addr: ws://127.0.0.1:8545
 OperatorPrivateKey:
 p2p:
   UdpPort: 16000

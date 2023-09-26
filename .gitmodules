@@ -3,4 +3,4 @@
 	url = https://github.com/bloxapp/ssv.git
 [submodule "resources/dkg"]
 	path = resources/dkg
-	url = https://github.com/RockX-SG/rockx-dkg-cli
+	url = https://github.com/consensusnetworks/rockx-dkg-cli

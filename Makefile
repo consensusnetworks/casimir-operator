@@ -9,7 +9,7 @@ SERVICES := $(shell grep SERVICES .env | cut -d '=' -f2)
 SERVICE_LIST := $(shell echo $(SERVICES) | tr ',' '\n')
 
 install:
-	@git submodule update --init --recursive
+	@git submodule update --init --recursive --remote
 
 copy:
 	@overrides=""; \
@@ -68,7 +68,7 @@ copy:
 generate_operator_keys:
 	@docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys
 
-run:
+up:
 	@stack=""; \
 	for service in $(SERVICE_LIST); do \
 		echo "Running stack for $$service"; \
@@ -84,12 +84,12 @@ run:
 		fi; \
 	done; \
 	if [ -f docker-compose.override.yaml ]; then \
-		docker compose -f docker-compose.override.yaml -f docker-compose.yaml up $$stack -d; \
+		docker compose -f docker-compose.override.yaml -f docker-compose.yaml up $$stack --build -d; \
 	else \
-		docker compose up $$stack -d; \
+		docker compose up $$stack --build -d; \
 	fi;
 
-stop:
+down:
 	@echo "Stopping all services"; \
 	docker compose down
 

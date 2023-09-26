@@ -129,11 +129,11 @@
 5. Run your required services with docker-compose:
 
     ```bash
-    make run
+    make up
     ```
 
 6. Stop all running services:
 
     ```bash
-    make stop
+    make down
     ```
