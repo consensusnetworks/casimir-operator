@@ -9,7 +9,8 @@ SERVICES := $(shell grep SERVICES .env | cut -d '=' -f2)
 SERVICE_LIST := $(shell echo $(SERVICES) | tr ',' '\n')
 
 install:
-	@git submodule update --init --recursive --remote
+	@git submodule sync --recursive; \
+	git submodule update --init --recursive --remote;
 
 copy:
 	@overrides=""; \
@@ -66,7 +67,7 @@ copy:
     done;
 
 generate_operator_keys:
-	@docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys
+	@docker run --rm -it 'bloxstaking/ssv-node:latest' /go/bin/ssvnode generate-operator-keys;
 
 up:
 	@stack=""; \
@@ -91,6 +92,6 @@ up:
 
 down:
 	@echo "Stopping all services"; \
-	docker compose down
+	docker compose down;
 
 
