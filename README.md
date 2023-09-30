@@ -1,6 +1,6 @@
-# SSV DKG
+# Casimir Operator
 
-> SSV with RockX DKG support
+> SSV operator with DKG server
 
 ## Usage
 
