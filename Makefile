@@ -33,7 +33,7 @@ copy:
 			sed $(SED_INPLACE) "s|./data/ssv-node/db|./data/ssv-node-$$n/db|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|16000|$$(($$((16000)) + $$n))|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|17000|$$(($$((16000)) + $$n))|g" ./config/ssv.node.$$n.yaml; \
-			sed $(SED_INPLACE) "s|key.txt|key.$$n.txt|g" ./config/dkg.node.$$n.yaml; \
+			sed $(SED_INPLACE) "s|sk.txt|sk.$$n.txt|g" ./config/dkg.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|3030|$$(($$((3030)) + $$n))|g" ./config/dkg.node.$$n.yaml; \
 		elif [[ $$service == "exporter" ]]; then \
 			if [ ! -f "./config/ssv.exporter.yaml" ]; then \
