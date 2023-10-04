@@ -1,5 +1,5 @@
 db:
-  Path: ./data/db/ssv-node
+  Path: ./data/ssv-node/db
 ssv:
   Network: jato-v2
 eth2:

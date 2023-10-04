@@ -1,0 +1,3 @@
+privKey: ./keys/sk.txt
+port: 3030
+storeShare: true

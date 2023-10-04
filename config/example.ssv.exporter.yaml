@@ -1,5 +1,5 @@
 db:
-  Path: ./data/db/ssv-exporter
+  Path: ./data/ssv-exporter/db
 ssv:
   Network: jato-v2
   DutyLimit: 32

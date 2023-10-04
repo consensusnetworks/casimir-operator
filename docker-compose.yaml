@@ -1,37 +1,112 @@
 version: '3.8'
 x-base-ssv-node:
   &default-ssv-node
+  platform: linux/amd64
   build:
-    context: ./resources/ssv
+    context: ./lib/ssv
     dockerfile: Dockerfile
-  image: ssvnode:latest
+  image: ssv-node:latest
   command: make BUILD_PATH=/go/bin/ssvnode start-node
-  network_mode: host
   restart: on-failure
   volumes:
-    - ./data:/data
     - ./config:/config
+    - ./data:/data
+
 x-base-dkg-node:
   &default-dkg-node
+  platform: linux/amd64
   build:
-    context: ./resources/dkg
-    dockerfile: build/docker/node/Dockerfile
-  image: dkgnode:latest
-  command: ./node
-  network_mode: host
+    context: ./lib/dkg
+    dockerfile: Dockerfile
+  image: dkg-node:latest
+  command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
   restart: on-failure
+  volumes:
+    - ./config:/config
+    - ./data:/data
+    - ./keys:/keys
+
 services:
-  dkg-messenger:
-    container_name: dkg-messenger
-    build:
-      context: ./resources/dkg
-      dockerfile: build/docker/messenger/Dockerfile
-    image: dkgmessenger:latest
-    command: ./messenger
-    network_mode: host
-    restart: on-failure
-    ports: 
-      - 3500:3500
+  dkg-node:
+    <<: *default-dkg-node
+    container_name: dkg-node
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.yaml
+    ports:
+      - 3030:3030
+
+  dkg-node-1:
+    <<: *default-dkg-node
+    container_name: dkg-node-1
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.1.yaml
+    ports:
+      - 3031:3031
+
+  dkg-node-2:
+    <<: *default-dkg-node
+    container_name: dkg-node-2
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.2.yaml
+    ports:
+      - 3032:3032
+
+  dkg-node-3:
+    <<: *default-dkg-node
+    container_name: dkg-node-3
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.3.yaml
+    ports:
+      - 3033:3033
+
+  dkg-node-4:
+    <<: *default-dkg-node
+    container_name: dkg-node-4
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.4.yaml
+    ports:
+      - 3034:3034
+
+  dkg-node-5:
+    <<: *default-dkg-node
+    container_name: dkg-node-5
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server    
+    environment:
+      CONFIG_PATH: ./config/dkg.node.5.yaml
+    ports:
+      - 3035:3035
+
+  dkg-node-6:
+    <<: *default-dkg-node
+    container_name: dkg-node-6
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.6.yaml
+    ports:
+      - 3036:3036
+
+  dkg-node-7:
+    <<: *default-dkg-node
+    container_name: dkg-node-7
+    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+    environment:
+      CONFIG_PATH: ./config/dkg.node.7.yaml
+    ports:
+      - 3037:3037
+
+  dkg-node-8:
+    <<: *default-dkg-node
+    container_name: dkg-node-8
+    environment:
+      CONFIG_PATH: ./config/dkg.node.8.yaml
+    ports:
+      - 3038:3038
+
   ssv-node:
     <<: *default-ssv-node
     container_name: ssv-node
@@ -40,11 +115,7 @@ services:
     ports:
       - 16000:16000
       - 17000:15000
-  dkg-node:
-    <<: *default-dkg-node
-    container_name: dkg-node
-    ports:
-      - 2500:2500
+
   ssv-node-1:
     <<: *default-ssv-node
     container_name: ssv-node-1
@@ -53,11 +124,7 @@ services:
     ports:
       - 16001:16001
       - 17001:15001
-  dkg-node-1:
-    <<: *default-dkg-node
-    container_name: dkg-node-1
-    ports:
-      - 2501:2501
+
   ssv-node-2:
     <<: *default-ssv-node
     container_name: ssv-node-2
@@ -66,11 +133,7 @@ services:
     ports:
       - 16002:16002
       - 17002:15002
-  dkg-node-2:
-    <<: *default-dkg-node
-    container_name: dkg-node-2
-    ports:
-      - 2502:2502
+
   ssv-node-3:
     <<: *default-ssv-node
     container_name: ssv-node-3
@@ -79,11 +142,7 @@ services:
     ports:
       - 16003:16003
       - 17003:15003
-  dkg-node-3:
-    <<: *default-dkg-node
-    container_name: dkg-node-3
-    ports:
-      - 2503:2503
+
   ssv-node-4:
     <<: *default-ssv-node
     container_name: ssv-node-4
@@ -92,11 +151,7 @@ services:
     ports:
       - 16004:16004
       - 17004:15004
-  dkg-node-4:
-    <<: *default-dkg-node
-    container_name: dkg-node-4
-    ports:
-      - 2504:2504
+
   ssv-node-5:
     <<: *default-ssv-node
     container_name: ssv-node-5
@@ -105,11 +160,7 @@ services:
     ports:
       - 16005:16005
       - 17005:15005
-  dkg-node-5:
-    <<: *default-dkg-node
-    container_name: dkg-node-5
-    ports:
-      - 2505:2505
+
   ssv-node-6:
     <<: *default-ssv-node
     container_name: ssv-node-6
@@ -118,11 +169,7 @@ services:
     ports:
       - 16006:16006
       - 17006:15006
-  dkg-node-6:
-    <<: *default-dkg-node
-    container_name: dkg-node-6
-    ports:
-      - 2506:2506
+
   ssv-node-7:
     <<: *default-ssv-node
     container_name: ssv-node-7
@@ -131,11 +178,7 @@ services:
     ports:
       - 16007:16007
       - 17007:15007
-  dkg-node-7:
-    <<: *default-dkg-node
-    container_name: dkg-node-7
-    ports:
-      - 2507:2507
+
   ssv-node-8:
     <<: *default-ssv-node
     container_name: ssv-node-8
@@ -144,11 +187,7 @@ services:
     ports:
       - 16008:16008
       - 17008:15008
-  dkg-node-8:
-    <<: *default-dkg-node
-    container_name: dkg-node-8
-    ports:
-      - 2508:2508
+
   ssv-exporter:
     <<: *default-ssv-node
     container_name: ssv-exporter
