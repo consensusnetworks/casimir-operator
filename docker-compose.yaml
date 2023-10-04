@@ -5,7 +5,7 @@ x-base-ssv-node:
   build:
     context: ./lib/ssv
     dockerfile: Dockerfile
-  image: ssv-node:latest
+  image: ssv:latest
   command: make BUILD_PATH=/go/bin/ssvnode start-node
   restart: on-failure
   volumes:
@@ -18,7 +18,7 @@ x-base-dkg-node:
   build:
     context: ./lib/dkg
     dockerfile: Dockerfile
-  image: dkg-node:latest
+  image: dkg:latest
   command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
   restart: on-failure
   volumes:
