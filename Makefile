@@ -59,7 +59,7 @@ up:
 		fi; \
 	done; \
 	echo "Running stack: $$stack"; \
-	docker compose up $$stack -d;
+	docker compose up $$stack --build -d;
 
 down:
 	@echo "Stopping all services"; \

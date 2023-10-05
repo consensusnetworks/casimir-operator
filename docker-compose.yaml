@@ -7,6 +7,7 @@ x-base-ssv-node:
     dockerfile: Dockerfile
   image: ssv:latest
   command: make BUILD_PATH=/go/bin/ssvnode start-node
+  network_mode: host
   restart: on-failure
   volumes:
     - ./config:/config
@@ -19,7 +20,8 @@ x-base-dkg-node:
     context: ./lib/dkg
     dockerfile: Dockerfile
   image: dkg:latest
-  command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
+  command: make BUILD_PATH=/go/bin/ssv-dkg start-operator
+  network_mode: host
   restart: on-failure
   volumes:
     - ./config:/config
@@ -30,7 +32,6 @@ services:
   dkg-node:
     <<: *default-dkg-node
     container_name: dkg-node
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.yaml
     ports:
@@ -39,7 +40,6 @@ services:
   dkg-node-1:
     <<: *default-dkg-node
     container_name: dkg-node-1
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.1.yaml
     ports:
@@ -48,7 +48,6 @@ services:
   dkg-node-2:
     <<: *default-dkg-node
     container_name: dkg-node-2
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.2.yaml
     ports:
@@ -57,7 +56,6 @@ services:
   dkg-node-3:
     <<: *default-dkg-node
     container_name: dkg-node-3
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.3.yaml
     ports:
@@ -66,7 +64,6 @@ services:
   dkg-node-4:
     <<: *default-dkg-node
     container_name: dkg-node-4
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.4.yaml
     ports:
@@ -75,7 +72,6 @@ services:
   dkg-node-5:
     <<: *default-dkg-node
     container_name: dkg-node-5
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server    
     environment:
       CONFIG_PATH: ./config/dkg.node.5.yaml
     ports:
@@ -84,7 +80,6 @@ services:
   dkg-node-6:
     <<: *default-dkg-node
     container_name: dkg-node-6
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.6.yaml
     ports:
@@ -93,7 +88,6 @@ services:
   dkg-node-7:
     <<: *default-dkg-node
     container_name: dkg-node-7
-    command: make BUILD_PATH=/go/bin/dkgcli start-dkg-server
     environment:
       CONFIG_PATH: ./config/dkg.node.7.yaml
     ports:

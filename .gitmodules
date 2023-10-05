@@ -1,6 +1,7 @@
-[submodule "lib/dkg"]
-	path = lib/dkg
-	url = https://github.com/consensusnetworks/ssv-dkg.git
 [submodule "lib/ssv"]
 	path = lib/ssv
 	url = https://github.com/consensusnetworks/ssv.git
+[submodule "lib/dkg"]
+	path = lib/dkg
+	url = https://github.com/consensusnetworks/ssv-dkg.git
+	branch = feature/operator-env
