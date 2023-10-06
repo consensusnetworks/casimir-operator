@@ -12,6 +12,7 @@ x-base-ssv-node:
   volumes:
     - ./config:/config
     - ./data:/data
+    - ./keys:/keys
 
 x-base-dkg-node:
   &default-dkg-node
