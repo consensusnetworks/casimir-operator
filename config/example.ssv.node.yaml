@@ -6,7 +6,9 @@ eth2:
   BeaconNodeAddr: http://127.0.0.1:5052
 eth1:
   ETH1Addr: ws://127.0.0.1:8545
-OperatorPrivateKey:
+KeyStore:
+  PrivateKeyFile: ./keys/encrypted.json
+  PasswordFile: ./keys/password.txt
 p2p:
   UdpPort: 16000
   TcpPort: 17000

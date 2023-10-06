@@ -14,5 +14,7 @@ eth1:
 GenerateOperatorPrivateKey: true
 WebSocketAPIPort: 16000
 p2p:
+  Subnets: 0xffffffffffffffffffffffffffffffff
+  MaxPeers: 150
   UdpPort: 16009
   TcpPort: 17009

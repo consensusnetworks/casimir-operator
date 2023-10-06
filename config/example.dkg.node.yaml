@@ -1,3 +1,4 @@
-privKey: ./keys/sk.txt
+password: ./keys/password.txt
+privKey: ./keys/encrypted.json
 port: 3030
 storeShare: true
