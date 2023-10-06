@@ -1,10 +1,7 @@
-keys
-data
-DS_Store
 .env
-/env/*
-!/env/example.*
 /config/*
 !/config/example.*
-docker-compose.override.yaml
-
+data
+DS_Store
+/keys/*
+!/keys/example.*
