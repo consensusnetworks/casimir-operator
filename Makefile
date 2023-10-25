@@ -8,6 +8,9 @@ else
 endif
 SERVICE_LIST := $(shell echo $(SERVICES) | tr ',' '\n')
 
+ifeq ($(SERVICE_LIST),)
+	SERVICE_LIST := node
+
 install:
 	@git submodule sync --recursive; \
 	git submodule update --init --recursive --remote;
