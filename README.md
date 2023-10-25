@@ -42,6 +42,22 @@ Complete the following steps to quickly start a Casimir operator:
     make down
     ```
 
+### Assemble Your Own
+
+If you'd like to assemble your own Casimir operator stack, take note of the requirements for each component below.
+
+#### Ethereum RPC Node
+
+You can use any pair of execution and consensus client to run your Ethereum RPC node. See the list of [execution](https://ethereum.org/en/developers/docs/nodes-and-clients/#execution-clients) and [consensus](https://ethereum.org/en/developers/docs/nodes-and-clients/#consensus-clients) clients to choose the best pair for your system, then follow the respective client docs to set up your node. We also recommend [ETH Docker](https://github.com/eth-educators/eth-docker) to easily set up and run both clients in a single stack. **The execution and consensus RPC APIs must be enabled and accessible to the SSV node.**
+
+#### SSV Node
+
+The [SSV node installation guide](https://docs.ssv.network/operator-user-guides/operator-node/installation) walks through preparing the required services, securely generating an operator keystore, and configuring the node. Note, you can also use [ETH Docker's SSV support](https://eth-docker.net/Support/SSV) to combine your Ethereum RPC node and SSV node into a single stack.
+
+#### SSV DKG Server
+
+You can follow the [SSV DKG server installation guide](https://github.com/bloxapp/ssv-dkg#operator-quick-start) to add a DKG server to your operator. The DKG server configuration will also require your encrypted operator keystore and password file paths. **You must provide a publicly accessible DKG node endpoint to Casimir during registration.**
+
 ### Development
 
 Assuming you have already cloned the repository and installed submodules, you can run the following commands to start a Casimir operator:
