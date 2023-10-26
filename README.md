@@ -1,6 +1,6 @@
 # Casimir Operator
 
-> SSV operator with DKG enabled
+> Secret Shared Validator (SSV) operator with distributed key generation (DKG) enabled
 
 ## Setup
 
