@@ -6,38 +6,52 @@
 
 A Casimir operator consists of the following services:
 
-    - An [Ethereum RPC node](#ethereum-rpc-node) that connects the SSV DVT node to the Ethereum network.
-    - An [SSV node](#ssv-node) that performs cluster duties for validators.
-    - An [SSV DKG server](#ssv-dkg-server) that participates in key generation and resharing ceremonies.
+- An [Ethereum RPC node](#ethereum-rpc-node) that connects the SSV node to the Ethereum network.
+- An [SSV node](#ssv-node) that performs cluster duties for validators.
+- An [SSV DKG server](#ssv-dkg-server) that participates in key generation and resharing ceremonies.
 
 ### Quickstart
 
 Complete the following steps to quickly start a Casimir operator:
 
-1. Clone the Casimir Operator repository:
+1. Clone the Casimir Operator repository.
+   
     ```bash
     git clone https://github.com/consensusnetworks/casimir-operator.git && cd casimir-operator
     ```
-2. Install submodules:
+
+2. Install submodules.
+   
     ```bash
     make install
     ```
-3. Copy the required config files:
+
+3. Copy the required config files.
+   
     ```bash
     make copy
     ```
+
 4. Update the `eth1.ETH1Addr` in `./config/ssv.node.yaml` to point to the correct eth1 node.
+
 5. Update the `eth2.BeaconNodeAddr` in `./config/ssv.node.yaml` to point to the correct beacon node.
-6. Generate new operator keys (you will be prompted for a keystore password):
+   
+6. Generate new operator keys (you will be prompted for a keystore password).
+   
     ```bash
     make generate_operator_keys
     ```
+
 7. Copy the operator public key from `./keys/encrypted.json` and [register it with SSV network](https://docs.ssv.network/run-a-node/operator-node/registration) to get an operator ID.
-8. Run your node with docker-compose:
+   
+8. Run your node with docker-compose.
+   
     ```bash
     make up
     ```
-9. Stop your node:
+
+9.  Stop your node.
+    
     ```bash
     make down
     ```
@@ -62,22 +76,32 @@ You can follow the [SSV DKG server installation guide](https://github.com/bloxap
 
 Assuming you have already cloned the repository and installed submodules, you can run the following commands to start a development environment with multiple operators:
 
-1. Create a `.env` file:
+1. Create a `.env` file.
+   
     ```bash
     touch .env
     ```
+
 2. Set `MODE=development` in your `.env` file.
+   
 3. Set `SERVICES=node.1,node.2,node.3,node.4` in your `.env` file, or include as many nodes as you want up to 8.
-4. Copy the required config files:
+   
+4. Copy the required config files.
+   
     ```bash
     make copy
     ```
-5. Follow steps 4-6 in the [Quickstart](#quickstart) guide for each node 1 to _n_. The copied config file names will specify the node number, e.g. `./config/ssv.node.1.yaml`. 
-6. Run your required services with docker-compose:
+
+5. Follow steps 4-6 in the [Quickstart](#quickstart) guide for each node 1 to _n_. The copied config file names will specify the node number, e.g. `./config/ssv.node.1.yaml`.
+   
+6. Run your required services with docker-compose.
+   
     ```bash
     make up
     ```
-7. Stop all running services:
+
+7. Stop all running services.
+   
     ```bash
     make down
     ```
