@@ -4,10 +4,10 @@
 
 ## Setup
 
-A Casimir operator consists of the following components:
+A Casimir operator consists of the following services:
 
-    - An [Ethereum RPC Node](#ethereum-rpc-node) that connects the SSV DVT node to the Ethereum network.
-    - An [SSV Node](#ssv-node) that performs cluster duties for validators.
+    - An [Ethereum RPC node](#ethereum-rpc-node) that connects the SSV DVT node to the Ethereum network.
+    - An [SSV node](#ssv-node) that performs cluster duties for validators.
     - An [SSV DKG server](#ssv-dkg-server) that participates in key generation and resharing ceremonies.
 
 ### Quickstart
@@ -44,7 +44,9 @@ Complete the following steps to quickly start a Casimir operator:
 
 ### Ethereum RPC Node
 
-You can use any pair of execution and consensus client to run your Ethereum RPC node. See the list of [execution](https://ethereum.org/en/developers/docs/nodes-and-clients/#execution-clients) and [consensus](https://ethereum.org/en/developers/docs/nodes-and-clients/#consensus-clients) clients to choose the best pair for your system, then follow the respective client docs to set up your node. We also recommend [ETH Docker](https://github.com/eth-educators/eth-docker) to easily set up and run both clients in a single stack. **The execution and consensus RPC APIs must be enabled and accessible to the SSV node.**
+You can use any pair of execution and consensus client to run your Ethereum RPC node. See the list of [execution](https://ethereum.org/en/developers/docs/nodes-and-clients/#execution-clients) and [consensus](https://ethereum.org/en/developers/docs/nodes-and-clients/#consensus-clients) clients to choose the best pair for your system, then follow the respective client docs to set up your node. We also recommend [ETH Docker](https://github.com/eth-educators/eth-docker) to easily set up and run both clients in a single stack.
+
+**The execution and consensus RPC APIs must be enabled and accessible to the SSV node.**
 
 ### SSV Node
 
@@ -52,11 +54,13 @@ The [SSV node installation guide](https://docs.ssv.network/operator-user-guides/
 
 ### SSV DKG Server
 
-You can follow the [SSV DKG server installation guide](https://github.com/bloxapp/ssv-dkg#operator-quick-start) to add a DKG server to your operator. The DKG server configuration will also require your encrypted operator keystore and password file paths. **You must provide a publicly accessible DKG node endpoint to Casimir during registration.**
+You can follow the [SSV DKG server installation guide](https://github.com/bloxapp/ssv-dkg#operator-quick-start) to add a DKG server to your operator. The DKG server configuration will also require your encrypted operator keystore and password file paths. 
+
+**You must provide a public DKG node URL to Casimir during registration.**
 
 ### Development
 
-Assuming you have already cloned the repository and installed submodules, you can run the following commands to start a Casimir operator:
+Assuming you have already cloned the repository and installed submodules, you can run the following commands to start a development environment with multiple operators:
 
 1. Create a `.env` file:
     ```bash
