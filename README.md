@@ -6,9 +6,9 @@
 
 A Casimir operator consists of the following services:
 
-- An [Ethereum RPC node](#ethereum-rpc-node) that connects the SSV node to the Ethereum network.
+- An [Ethereum node](#ethereum-node) that connects the SSV node to the Ethereum network.
 - An [SSV node](#ssv-node) that performs cluster duties for validators.
-- An [SSV DKG node](#ssv-dkg-node) that participates in key generation and resharing ceremonies.
+- An [DKG node](#dkg-node) that participates in key generation and resharing ceremonies.
 
 ### Quickstart
 
@@ -56,7 +56,7 @@ Complete the following steps to quickly start a Casimir operator:
     make down
     ```
 
-### Ethereum RPC Node
+### Ethereum Node
 
 You can use any pair of execution and consensus client to run your Ethereum RPC node. See the list of [execution](https://ethereum.org/en/developers/docs/nodes-and-clients/#execution-clients) and [consensus](https://ethereum.org/en/developers/docs/nodes-and-clients/#consensus-clients) clients to choose the best pair for your system, then follow the respective client docs to set up your node. We also recommend [ETH Docker](https://github.com/eth-educators/eth-docker) to easily set up and run both clients in a single stack. **The execution and consensus RPC APIs must be enabled and accessible to the SSV node.**
 
@@ -64,7 +64,7 @@ You can use any pair of execution and consensus client to run your Ethereum RPC 
 
 The [SSV node installation guide](https://docs.ssv.network/operator-user-guides/operator-node/installation) walks through preparing the required services, securely generating an operator keystore, and configuring the node. Note, you can also use [ETH Docker's SSV support](https://eth-docker.net/Support/SSV) to combine your Ethereum RPC node and SSV node into a single stack.
 
-### SSV DKG Node
+### DKG Node
 
 You can follow the [SSV DKG node installation guide](https://github.com/bloxapp/ssv-dkg#operator-quick-start) to add a DKG node to your operator. The DKG node configuration will also require your encrypted operator keystore and password file paths. **You must provide a public DKG node URL to Casimir during registration.**
 
