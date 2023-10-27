@@ -8,7 +8,7 @@ A Casimir operator consists of the following services:
 
 - An [Ethereum RPC node](#ethereum-rpc-node) that connects the SSV node to the Ethereum network.
 - An [SSV node](#ssv-node) that performs cluster duties for validators.
-- An [SSV DKG server](#ssv-dkg-server) that participates in key generation and resharing ceremonies.
+- An [SSV DKG node](#ssv-dkg-node) that participates in key generation and resharing ceremonies.
 
 ### Quickstart
 
@@ -64,9 +64,9 @@ You can use any pair of execution and consensus client to run your Ethereum RPC 
 
 The [SSV node installation guide](https://docs.ssv.network/operator-user-guides/operator-node/installation) walks through preparing the required services, securely generating an operator keystore, and configuring the node. Note, you can also use [ETH Docker's SSV support](https://eth-docker.net/Support/SSV) to combine your Ethereum RPC node and SSV node into a single stack.
 
-### SSV DKG Server
+### SSV DKG Node
 
-You can follow the [SSV DKG server installation guide](https://github.com/bloxapp/ssv-dkg#operator-quick-start) to add a DKG server to your operator. The DKG server configuration will also require your encrypted operator keystore and password file paths. **You must provide a public DKG node URL to Casimir during registration.**
+You can follow the [SSV DKG node installation guide](https://github.com/bloxapp/ssv-dkg#operator-quick-start) to add a DKG node to your operator. The DKG node configuration will also require your encrypted operator keystore and password file paths. **You must provide a public DKG node URL to Casimir during registration.**
 
 ### Development
 
