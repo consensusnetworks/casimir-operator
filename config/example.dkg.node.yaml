@@ -1,6 +1,5 @@
-password: ./keys/password.txt
+privKeyPassword: ./keys/password.txt
 privKey: ./keys/encrypted.json
 port: 3030
 storeShare: true
-logFilePath: ./data/dkg-node/log
 DBPath: ./data/dkg-node/db
