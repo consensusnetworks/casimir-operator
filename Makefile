@@ -10,6 +10,7 @@ SERVICE_LIST := $(shell echo $(SERVICES) | tr ',' '\n')
 
 ifeq ($(SERVICE_LIST),)
 	SERVICE_LIST := node
+endif
 
 install:
 	@git submodule sync --recursive; \
