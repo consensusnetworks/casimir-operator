@@ -36,6 +36,8 @@ copy:
 			sed $(SED_INPLACE) "s|password.txt|password.$$n.txt|g" ./config/dkg.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|encrypted.json|encrypted.$$n.json|g" ./config/dkg.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|3030|$$(($$((3030)) + $$n))|g" ./config/dkg.node.$$n.yaml; \
+			sed $(SED_INPLACE) "s|dkg-node/log|dkg-node-$$n/log|g" ./config/dkg.node.$$n.yaml; \
+			sed $(SED_INPLACE) "s|dkg-node/db|dkg-node-$$n/db|g" ./config/dkg.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|password.txt|password.$$n.txt|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|encrypted.json|encrypted.$$n.json|g" ./config/ssv.node.$$n.yaml; \
 			sed $(SED_INPLACE) "s|ssv-node/db|ssv-node-$$n/db|g" ./config/ssv.node.$$n.yaml; \
